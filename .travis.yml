@@ -15,7 +15,7 @@ env:
     - NODEJS_VERSION=node/6
     - NODEJS_VERSION=node/8
     - NODEJS_VERSION=node/9
-    # - NODEJS_VERSION=node/10 <- (Currently an issue)
+    - NODEJS_VERSION=node/10 # <- (Currently an issue in test script)
     # - NODEJS_VERSION=node/11 <- (Currently an issue)
     # - NODEJS_VERSION=node/12 <- (Still in development)
 

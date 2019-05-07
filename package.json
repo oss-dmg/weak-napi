@@ -1,6 +1,6 @@
 {
   "name": "weak-napi",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Make weak references to JavaScript Objects.",
   "main": "index.js",
   "directories": {
