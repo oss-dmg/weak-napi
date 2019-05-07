@@ -30,11 +30,12 @@ addons:
   apt:
     sources:
       - ubuntu-toolchain-r-test
-      - tree
     packages:
       - g++-4.9
 
 before_install:
+  # Install command `tree`
+  - sudo apt-get install -y tree
   # Install NVS.
   - git clone --branch v$NVS_VERSION --depth 1 https://github.com/jasongin/nvs ~/.nvs
   - . ~/.nvs/nvs.sh
