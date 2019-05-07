@@ -3,7 +3,7 @@ weak-napi (Native module)
 
 | Action        | Status        |
 | ------------- |:-------------:|
-| *Build*      | [![Build Status](https://travis-ci.com/oss-dmg/weak.svg?branch=master)](https://travis-ci.com/oss-dmg/weak) |
+| *Build*      | [![Build Status](https://travis-ci.com/oss-dmg/weak-napi.svg?branch=master)](https://travis-ci.com/oss-dmg/weak-napi) |
 
 ### Make weak references to JavaScript Objects.
 
