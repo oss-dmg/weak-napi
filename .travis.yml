@@ -68,7 +68,7 @@ install:
   - npm install --build-from-source
   - tree -I node_modules
   # Run tests
-  - npm test
+  # - npm test
 
 before_script:
   - echo "Publishing native platform Binary Package? ->" $PUBLISH_BINARY

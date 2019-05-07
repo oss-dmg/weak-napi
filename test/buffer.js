@@ -13,7 +13,7 @@ describe('weak()', function () {
       });
 
       assert(!called);
-      gc();
+      global.gc();
       setImmediate(() => {
         assert(called);
         done();
