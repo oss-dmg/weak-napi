@@ -7,7 +7,6 @@ env:
   global:
     - CXX=g++-4.9
     - NVS_VERSION=1.5.2
-    - NODE_PRE_GYP_GITHUB_TOKEN=c4226bc0375d8c8e71420de472192b10ed0592ae
   
   # We also need to specify the node.js versions we want to build from
   # and we want to also create binaries for the different node versions.

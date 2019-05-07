@@ -19,7 +19,7 @@
   },
   "scripts": {
     "install": "node-pre-gyp install --fallback-to-build",
-    "test": "nyc mocha -gc"
+    "test": "nyc mocha --gc-global"
   },
   "repository": {
     "type": "git",
