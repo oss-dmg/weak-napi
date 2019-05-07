@@ -30,6 +30,7 @@ addons:
   apt:
     sources:
       - ubuntu-toolchain-r-test
+      - tree
     packages:
       - g++-4.9
 
@@ -64,6 +65,7 @@ install:
   - npm install -g npm@latest
   # Ensure source install works and compiles correctly
   - npm rebuild # <- Only for the first time!!!
+  - tree -I node_modules
   # Run tests
   - npm test
 
