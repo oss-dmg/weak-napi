@@ -65,8 +65,8 @@ before_install:
 install:
   - npm install -g npm@latest
   # Ensure source install works and compiles correctly
-  - npm install
   - prebuild -t 3 -r napi
+  - npm install
   - tree -I node_modules
   # Run tests
   - npm test
