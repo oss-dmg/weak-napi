@@ -1,0 +1,56 @@
+{
+  "name": "weak-napi",
+  "version": "1.0.0",
+  "description": "Make weak references to JavaScript Objects.",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "binary": {
+    "module_name" : "weakref",
+    "napi_versions": [2,3]
+  },
+  "scripts": {
+    "install": "prebuild --install",
+    "test": "nyc mocha -gc",
+    "rebuild": "prebuild --compile",
+    "prebuild": "prebuild --all --strip --verbose"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oss-dmg/weak-napi.git"
+  },
+  "keywords": [
+    "weak",
+    "reference",
+    "js",
+    "javascript",
+    "object",
+    "function",
+    "callback",
+    "napi",
+    "native",
+    "prebuilt"
+  ],
+  "author": "Voltana <oss@derikmediagroup.xyz> (https://derikmediagroup.xyz)",
+  "contributors": [
+    "Anna Henningsen <anna@addaleax.net>",
+    "Ben Noordhuis <info@bnoordhuis.nl>",
+    "Nathan Rajlich <nathan@tootallnate.net>"
+  ],
+  "license": "MIT",
+  "gypfile": true,
+  "bugs": {
+    "url": "https://github.com/oss-dmg/weak-napi/issues"
+  },
+  "homepage": "https://github.com/oss-dmg/weak-napi#readme",
+  "dependencies": {
+    "bindings": "^1.5.0",
+    "node-addon-api": "^1.6.3",
+    "setimmediate-napi": "^1.0.3"
+  },
+  "devDependencies": {
+    "mocha": "^6.1.4",
+    "nyc": "^14.1.0"
+  }
+}
