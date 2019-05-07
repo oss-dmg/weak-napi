@@ -49,8 +49,8 @@ before_install:
   - nvs use $NODEJS_VERSION
   # Install node-gyp and node-pre-gyp so it is available for packaging and publishing
   - npm install node-gyp -g
-  - npm install -g prebuild
-  # - npm install node-pre-gyp
+  - npm install node-pre-gyp
+  - npm install node-pre-gyp-github
   # Figure out if we should publish
   - PUBLISH_BINARY=false
   # Short print-outs
@@ -65,8 +65,7 @@ before_install:
 install:
   - npm install -g npm@latest
   # Ensure source install works and compiles correctly
-  - prebuild -t 3 -r napi
-  - npm install
+  - npm install --build-from-source
   - tree -I node_modules
   # Run tests
   - npm test
@@ -74,9 +73,9 @@ install:
 before_script:
   - echo "Publishing native platform Binary Package? ->" $PUBLISH_BINARY
   # if we are publishing for this commit, do it
-  - if [[ $PUBLISH_BINARY == true ]]; then node-pre-gyp package; fi;
+  - if [[ $PUBLISH_BINARY == true ]]; then node-pre-gyp package && node-pre-gyp-github publish --release; fi;
   # cleanup
-  # - node-pre-gyp clean
+  - node-pre-gyp clean
   - node-gyp clean
 
 # Post-install test scripts.
@@ -87,7 +86,7 @@ script:
   
 after_success:
   # if success then query and display all published binaries
-  # - node-pre-gyp info
+  - node-pre-gyp info
   # OpenCover
   - npm install coveralls
   # - nyc report --reporter=text-lcov | ./node_modules/.bin/coveralls

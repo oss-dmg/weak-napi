@@ -7,13 +7,19 @@
     "test": "test"
   },
   "binary": {
-    "module_name" : "weakref",
-    "napi_versions": [2,3]
+    "module_name": "weakref",
+    "module_path": "./lib/binding/napi-v{napi_build_version}",
+    "remote-path": "./{name}/v{version}/{configuration}/",
+    "package_name": "{platform}-{arch}-napi-v{napi_build_version}.tar.gz",
+    "host": "https://github.com/oss-dmg/weak-napi/releases/download/",
+    "remote_path": "{version}",
+    "napi_versions": [
+      3
+    ]
   },
   "scripts": {
-    "test": "nyc mocha -gc",
-    "rebuild": "prebuild --compile",
-    "prebuild": "prebuild --all --strip --verbose"
+    "install": "node-pre-gyp install --fallback-to-build",
+    "test": "nyc mocha -gc"
   },
   "repository": {
     "type": "git",
@@ -46,6 +52,7 @@
   "dependencies": {
     "bindings": "^1.5.0",
     "node-addon-api": "^1.6.3",
+    "node-pre-gyp": "^0.13.0",
     "setimmediate-napi": "^1.0.3"
   },
   "devDependencies": {
