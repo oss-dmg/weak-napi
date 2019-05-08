@@ -1,9 +1,10 @@
 weak-napi (Native module)
 =========================
 
-| Action        | Status        |
-| ------------- |:-------------:|
-| *Build*      | [![Build Status](https://travis-ci.com/oss-dmg/weak-napi.svg?branch=master)](https://travis-ci.com/oss-dmg/weak-napi) |
+| CI service    | Status        |
+| :------------- |:-------------|
+| *Travis CI*   | [![Build Status](https://travis-ci.com/oss-dmg/weak-napi.svg?branch=master)](https://travis-ci.com/oss-dmg/weak-napi) |
+| *Appveyor*    | [![Build status](https://ci.appveyor.com/api/projects/status/e8pgj0kec3apec8f/branch/master?svg=true)](https://ci.appveyor.com/project/VoltanaDMG/weak-napi/branch/master) |
 
 ### Make weak references to JavaScript Objects.
 
