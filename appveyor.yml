@@ -1,0 +1,95 @@
+# http://www.appveyor.com/docs/appveyor-yml
+# Needs a whole rework to concurrent with Travis CI!
+
+# Test against these versions of Node.js.
+environment:
+  # Visual Studio Version
+  MSVS_VERSION: 2015
+  # Test against these versions of Node.js and io.js
+  matrix:
+    - nodejs_version: "6"
+    - nodejs_version: "8"
+    - nodejs_version: "9"
+    - nodejs_version: "10" # <- (Currently an issue in test script)
+    # - nodejs_version: "11" <- (Currently an issue)
+    # - nodejs_version: "12" <- (Still in development)
+
+platform:
+  - x86
+  - x64
+
+matrix:
+  fast_finish: true
+
+cache:
+  - node_modules                        # local npm modules
+  - '%APPDATA%\npm-cache'               # npm cache
+
+# Install scripts. (runs after repo cloning)
+install:
+  # Technical git stuff
+  - cmd: ECHO "APPVEYOR_REPO_COMMIT_MESSAGE ->"
+  - cmd: ECHO %APPVEYOR_REPO_COMMIT_MESSAGE%
+  - cmd: SET COMMIT_MSG="%APPVEYOR_REPO_COMMIT_MESSAGE%"
+  - cmd: SET PUBLISH_BINARY=false
+  - cmd: git describe --tags --always HEAD > _git_tag.tmp
+  - cmd: SET /p GIT_TAG=<_git_tag.tmp
+  - cmd: ECHO "LATEST LOCAL TAG:"
+  - cmd: ECHO %GIT_TAG%
+  - cmd: ECHO "APPVEYOR REPO BRANCH/TAG:"
+  - cmd: ECHO %APPVEYOR_REPO_BRANCH%
+  - cmd: DEL _git_tag.tmp
+  # If we are building a tag commit we set PUBLISH_BINARY to true
+  - cmd: IF x%APPVEYOR_REPO_BRANCH%==x%GIT_TAG% SET PUBLISH_BINARY=true
+  # Or look for commit message containing `[publish binary]`
+  - cmd: IF not x%COMMIT_MSG:[publish binary]=%==x%COMMIT_MSG% SET PUBLISH_BINARY=true
+  - cmd: ECHO "Env Var PUBLISH_BINARY:"
+  - cmd: ECHO %PUBLISH_BINARY%
+
+  - ps: Update-NodeJsInstallation (Get-NodeJsLatestBuild $env:nodejs_version) $env:platform
+  - cmd: npm install -g npm@latest
+  - cmd: set PATH=%APPDATA%\npm;%PATH%
+
+before_build:
+  # Typical npm stuff.
+  - cmd: npm i -g node-gyp
+  - cmd: npm i node-pre-gyp
+  - cmd: npm i node-pre-gyp-github
+
+build_script:
+  - cmd: ECHO "BUILDING x86/x64 binary package:"
+  # Make sure to use to pass --msvs_version=%MSVS_VERSION% to the npm install command
+  # otherwise some bindings and libraries might now be available, an error will trigger
+  # Install it normally to get all requirements
+  - cmd: npm install --build-from-source --msvs_version=%MSVS_VERSION%
+  - cmd: ECHO "PUBLISH x86/x64 binary package:"
+  # Package node-pre-gyps binary
+  - cmd: IF %PUBLISH_BINARY%==true (node-pre-gyp package 2>&1)
+  # Publish build
+  - cmd: IF %PUBLISH_BINARY%==true (node-pre-gyp-github publish 2>&1)
+  # cleanup
+  - cmd: node-pre-gyp clean
+  - cmd: node-gyp clean
+
+# Post-install test scripts.
+test_script:
+  # Output useful info for debugging.
+  - cmd: node --version
+  - cmd: npm --version
+  # Run tests (currently issues at tests)
+  # - npm test
+
+on_success:
+  # test installing from binary package works
+  - cmd: ECHO "ON SUCCESS:"
+  # - cmd: ECHO "Try installing from binary:"
+  #- cmd: IF %PUBLISH_BINARY%==true npm install --fallback-to-build=false
+  # - cmd: npm install --fallback-to-build=false
+  # Print Available Binaries
+  - cmd: node-pre-gyp info
+
+# Don't actually deploy.
+deploy: off
+
+# Set build version format here instead of in the admin panel.
+version: "{build}"
