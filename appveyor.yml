@@ -5,6 +5,9 @@
 environment:
   # Visual Studio Version
   MSVS_VERSION: 2015
+  # NODE_PRE_GYP_GITHUB_TOKEN
+  NODE_PRE_GYP_GITHUB_TOKEN:
+    secure: dosrh1IQoz/+hJYVII/jo/ZuMnBmj/XxnfRr1WQYHG/nYiMbdBJhuDxS1RYyIP6j
   # Test against these versions of Node.js and io.js
   matrix:
     - nodejs_version: "6"
