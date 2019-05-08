@@ -52,9 +52,13 @@ install:
 
 before_build:
   # Typical npm stuff.
-  - cmd: npm i -g node-gyp
-  - cmd: npm i node-pre-gyp
-  - cmd: npm i node-pre-gyp-github
+  - cmd: npm i -g node-gyp            # Global installation
+  # Global installation required here, because of the following error:
+  # 'node-pre-gyp' is not recognized as an internal or external command,
+  # operable program or batch file.
+  # Command exited with code 9009
+  - cmd: npm i -g node-pre-gyp        # Global installation
+  - cmd: npm i -g node-pre-gyp-github # Global installation
 
 build_script:
   - cmd: ECHO "BUILDING x86/x64 binary package:"
