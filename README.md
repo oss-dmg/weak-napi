@@ -1,3 +1,23 @@
+<p align="center">
+  <a href="https://nodejs.org/">
+    <img
+      alt="Node.js"
+      src="https://nodejs.org/static/images/logo-light.svg"
+      width="400"
+    />
+  </a>
+</p>
+
+Node.js is a JavaScript runtime built on Chrome's V8 JavaScript engine. For
+more information on using Node.js, see the [Node.js Website][].
+
+This module is only for the JavaScript runtime Node.js and is provided by
+several open source collaberators.
+
+**This project is bound by a [Code of Conduct][].**
+
+---
+
 weak-napi (Native module)
 =========================
 
@@ -182,3 +202,7 @@ garbage collected.
 Returns an Array that `ref` iterates through to invoke the GC callbacks. This
 utilizes node's `EventEmitter#listeners()` function and therefore returns a copy
 in node 0.10 and newer.
+
+
+[Code of Conduct]: https://github.com/nodejs/admin/blob/master/CODE_OF_CONDUCT.md
+[Node.js Website]: https://nodejs.org/en/
