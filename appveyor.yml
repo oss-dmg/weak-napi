@@ -89,7 +89,7 @@ test_script:
 on_success:
   # test installing from binary package works
   - cmd: ECHO "ON SUCCESS:"
-  - cmd: cd C:\Libraries\boost_1_69_0
+  - cmd: cd C:\Libraries\boost_1_69_0\lib64-msvc-14.0
   - cmd: dir
   # - cmd: ECHO "Try installing from binary:"
   #- cmd: IF %PUBLISH_BINARY%==true npm install --fallback-to-build=false
