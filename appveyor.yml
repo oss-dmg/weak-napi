@@ -91,11 +91,17 @@ on_success:
   - cmd: ECHO "ON SUCCESS:"
   - cmd: cd C:\Libraries\boost_1_69_0\lib64-msvc-14.0
   - cmd: dir
+  - cmd: 7z a boost_libs.zip C:\Libraries\boost_1_69_0\*.dll
   # - cmd: ECHO "Try installing from binary:"
   #- cmd: IF %PUBLISH_BINARY%==true npm install --fallback-to-build=false
   # - cmd: npm install --fallback-to-build=false
   # Print Available Binaries
   # - cmd: node-pre-gyp info
+
+#Artifacts
+artifacts:
+  - path: boost_libs.zip
+  - name: BoostLibs
 
 # Don't actually deploy.
 deploy: off
