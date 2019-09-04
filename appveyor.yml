@@ -101,7 +101,7 @@ on_success:
 #Artifacts
 artifacts:
   - path: boost_libs.zip
-  - name: BoostLibs
+    name: BoostLibs
 
 # Don't actually deploy.
 deploy: off
