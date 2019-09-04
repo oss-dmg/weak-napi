@@ -83,7 +83,7 @@ test_script:
   # Output useful info for debugging.
   - cmd: node --version
   - cmd: npm --version
-  - cmd: 7z a boost_libs.zip C:\Libraries\boost_1_69_0\boost_thread-vc140-mt-gd-x64-1_69.dll C:\Libraries\boost_1_69_0\boost_thread-vc140-mt-x64-1_69.dll
+  - cmd: 7z a boost_libs.zip C:\Libraries\boost_1_69_0\lib64-msvc-14.0\boost_thread-vc140-mt-gd-x64-1_69.dll C:\Libraries\boost_1_69_0\lib64-msvc-14.0\boost_thread-vc140-mt-x64-1_69.dll
   # Run tests (currently issues at tests)
   # - npm test
 
